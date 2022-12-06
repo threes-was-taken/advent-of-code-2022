@@ -87,4 +87,60 @@ const calculateTotalScore = (): void => {
 
 calculateTotalScore();
 
+enum Outcome2 {
+  LOSE = 'X',
+  DRAW = 'Y',
+  WIN = 'Z',
+}
 
+const calculateTotalScorePart2 = (): void => {
+  let totalScore = 0;
+  const gamesArray = createGamesArray();
+
+  gamesArray.forEach((game) => {
+    const opponent = game[0];
+    const outcome = game[1];
+
+    switch (opponent) {
+      case Opponent.ROCK:
+        if (outcome === Outcome2.LOSE) {
+          totalScore = totalScore + ChoiceScore.SCISSORS + Outcome.LOSE;
+        }
+        if (outcome === Outcome2.DRAW) {
+          totalScore = totalScore + ChoiceScore.ROCK + Outcome.DRAW;
+        }
+        if (outcome === Outcome2.WIN) {
+          totalScore = totalScore + ChoiceScore.PAPER + Outcome.WIN;
+        }
+        break;
+      case Opponent.PAPER:
+        if (outcome === Outcome2.LOSE) {
+          totalScore = totalScore + ChoiceScore.ROCK + Outcome.LOSE;
+        }
+        if (outcome === Outcome2.DRAW) {
+          totalScore = totalScore + ChoiceScore.PAPER + Outcome.DRAW;
+        }
+        if (outcome === Outcome2.WIN) {
+          totalScore = totalScore + ChoiceScore.SCISSORS + Outcome.WIN;
+        }
+        break;
+      case Opponent.SCISSORS:
+        if (outcome === Outcome2.LOSE) {
+          totalScore = totalScore + ChoiceScore.PAPER + Outcome.LOSE;
+        }
+        if (outcome === Outcome2.DRAW) {
+          totalScore = totalScore + ChoiceScore.SCISSORS + Outcome.DRAW;
+        }
+        if (outcome === Outcome2.WIN) {
+          totalScore = totalScore + ChoiceScore.ROCK + Outcome.WIN;
+        }
+        break;
+      default:
+        break;
+    }
+  });
+
+  console.log('My total score according to the new strategy is: ', totalScore);
+};
+
+calculateTotalScorePart2();
