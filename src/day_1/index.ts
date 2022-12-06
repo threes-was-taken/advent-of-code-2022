@@ -18,7 +18,7 @@ const createElvesArray = (): number[][] => {
   return elvesArray;
 };
 
-const getLoadedElf = (): number => {
+const getLoadedElf = (): void => {
   const elvesArray = createElvesArray();
 
   const highestCalorieElf = elvesArray.reduce(
@@ -35,7 +35,21 @@ const getLoadedElf = (): number => {
     [0]
   );
 
-  return highestCalorieElf[0];
+  console.log('Highest calories carried by an elf: ', highestCalorieElf[0]);
 };
 
-console.log(getLoadedElf());
+getLoadedElf();
+
+const getTopThreeElves = (): void => {
+  const elvesArray = createElvesArray();
+
+  const topThreeCalorieCount = elvesArray
+    .map((elf) => elf.reduce((prev, curr) => prev + curr, 0))
+    .sort((a, b) => b - a)
+    .slice(0, 3)
+    .reduce((prev, curr) => prev + curr, 0);
+
+  console.log('Calorie count of top three elves: ', topThreeCalorieCount);
+};
+
+getTopThreeElves();
